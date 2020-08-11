@@ -1,0 +1,137 @@
+<nz-radio-group style="display: block;" [ngModel]="this.radioValue" (ngModelChange)="onItemRadio($event)">
+    <nz-table #comTable
+        nzShowSizeChanger
+        [nzFrontPagination]="false"
+        [nzTotal]="total"
+        [nzPageSize]="pageSize"
+        [nzPageIndex]="pageIndex"
+        [nzData]="dataList"
+        (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+        (nzQueryParams)="onQueryParamsChange($event)"
+        [nzScroll]="nzScroll"
+        nzTableLayout="fixed"
+        [nzSize]="tableSize"
+        [nzBordered]="false"
+        [class.has-scroll]="hasScroll"
+    >
+    <thead>
+        <tr>
+            <th nzLeft nzWidth="40px" *ngIf="isChecked" [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
+            <th nzLeft nzWidth="40px" *ngIf="isRadio"></th>
+            <ng-container *ngFor="let item of headers" >
+                <th *ngIf="!item.customFilter"
+                    nzEllipsis
+                    [nzWidth]="item.width ? item.width + 'px' : '100px'"
+                    [nzColumnKey]="item.field"
+                    [nzSortOrder]="item.sortOrder"
+                    [nzSortFn]="item.sortFn"
+                    [nzSortDirections]="item.sortDirections"
+                    [nzSortPriority]="item.sortPriority"
+                    (nzSortOrderChange)="item.orderChangeFn"
+                    [nzFilterMultiple]="item.filterMultiple"
+                    [nzFilters]="item.listOfFilter"
+                    [nzFilterFn]="item.filterFn"
+                    (nzFilterChange)="item.filterChangeFn"
+                    [nzRight]="actionRight && item.type=='action'"
+                    title="{{item.label}}"
+                >{{ item.label }}</th>
+                <!-- 自定义过滤器，根据业务需要后期可以扩展此功能 -->
+                <!-- <th  *ngIf="item.customFilter" nzCustomFilter>
+                    {{ item.label }}
+                    <nz-filter-trigger [(nzVisible)]="item.visible" [nzActive]="item.searchValue.length > 0" [nzDropdownMenu]="menu">
+                        <i nz-icon nzType="search"></i>
+                    </nz-filter-trigger>
+                    <nz-dropdown-menu #menu="nzDropdownMenu">
+                        <div class="ant-table-filter-dropdown">
+                        <div class="search-box">
+                            <input type="text" nz-input placeholder="Search name" [(ngModel)]="item.searchValue" />
+                            <button nz-button nzSize="small" nzType="primary" (click)="onQueryParamsChange()" class="search-button">
+                            Search
+                            </button>
+                            <button nz-button nzSize="small" (click)="reset(item.searchValue)">Reset</button>
+                        </div>
+                        </div>
+                    </nz-dropdown-menu>
+                </th> -->
+            </ng-container>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of comTable.data">
+            <td
+                nzLeft
+                *ngIf="isChecked"
+                [nzChecked]="setOfCheckedId.has(data[keyField])"
+                [nzDisabled]="data.disabled"
+                (nzCheckedChange)="onItemChecked(data[keyField], $event)"
+            ></td>
+            <td nzLeft *ngIf="isRadio">
+                <label 
+                    nz-radio 
+                    nzName="tableRadio" 
+                    [nzValue]="data[keyField]" 
+                ></label>
+            </td>
+            <ng-container *ngFor="let item of headers">
+                <ng-container [ngSwitch]="item.type">
+                    <td [nzRight]="actionRight" *ngSwitchCase="'action'">
+                        <button 
+                            *ngIf="item.action.indexOf('edit')>-1" 
+                            type="button" 
+                            class="table-action-btn" 
+                            nzSize="small" 
+                            nz-button 
+                            nzType="link"
+                            (click)="trAction('edit', data)"
+                        >编辑</button>
+                        <button 
+                            *ngIf="item.action.indexOf('detail')>-1" 
+                            type="button"  
+                            nzSize="small" 
+                            class="table-action-btn" 
+                            nz-button 
+                            nzType="link"
+                            (click)="trAction('detail', data)"
+                        >详情</button>
+                        <button 
+                            *ngIf="item.action.indexOf('data')>-1" 
+                            type="button"  
+                            nzSize="small" 
+                            class="table-action-btn" 
+                            nz-button 
+                            nzType="link"
+                            (click)="trAction('data', data)"
+                        >数据</button>
+                        <button 
+                            *ngIf="item.action.indexOf('function')>-1" 
+                            type="button"  
+                            nzSize="small" 
+                            class="table-action-btn" 
+                            nz-button 
+                            nzType="link"
+                            (click)="trAction('function', data)"
+                        >功能</button>
+                        <button 
+                            *ngIf="item.action.indexOf('delete')>-1" 
+                            type="button"  
+                            nzSize="small" 
+                            class="table-action-btn" 
+                            nz-button 
+                            nzType="link"
+                            nz-popconfirm
+                            nzPopconfirmTitle="确定要删除该条数据?" 
+                            (nzOnConfirm)="trAction('delete', data)"
+                        >删除</button>
+                    </td>
+                    <td *ngSwitchCase="'status'">
+                        <span>{{data[item.field] | status}}</span>
+                    </td>
+                    <td *ngSwitchDefault >
+                        <span class="ellipsis" title="{{data[item.field]}}">{{ data[item.field] }}</span> 
+                    </td>
+                </ng-container>
+            </ng-container>
+        </tr>
+    </tbody>
+</nz-table>
+</nz-radio-group>

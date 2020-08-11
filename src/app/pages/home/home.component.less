@@ -1,0 +1,89 @@
+@text_color: #2c404c;
+@text_color2: #889aa5;
+@menu_bg: #e2e8ed;
+@logo_bg: #012939;
+@shadow: rgba(0, 0, 0, .2);
+@active: #09819C;
+@menu_height: 60px;
+@footer_height: 30px;
+
+.home-top {
+    height: @menu_height;background-color: @menu_bg;border-bottom: 2px solid #ddd;box-sizing: border-box;
+    .welcom-text {
+        height: 30px;line-height: 30px;background-color: @logo_bg;color: @text_color2;
+        font-size: 15px;padding: 0 10px;
+    }
+    .home-logo {
+        width: 280px;height: 100%;overflow: hidden;float: left;line-height: 60px;text-indent: 10px;
+        .main-logo {
+            width: 40px;
+        }
+        >span {
+            font-size: 16px;
+        }
+    }
+    .top-logo {
+        background: url(/assets/images/top-logo.png) center center no-repeat;
+        background-size: 100% 100%;
+        width: 30px;height: 12px;display: inline-block;margin-right: 10px;
+    }
+    .home-top-left {
+        float: left;
+    }
+    .home-top-right {
+        float: right;padding-right: 10px;line-height: 60px;
+        .user-info {
+            display: inline-block;margin-right: 15px;font-size: 15px;color: @text_color;
+        }
+    }
+    .top-menu {
+        display: flex;
+        li {
+            height: 60px;line-height: 60px;padding: 0 20px;color: @text_color;
+            font-size: 15px;box-sizing: border-box;cursor: pointer;
+            .top-left-icon {
+                font-size: 16px;
+            }
+            .top-right-icon {
+                font-size: 12px;
+            }
+            &.active {
+                border-top: 2px solid @active;height: 58px;
+            }
+        }
+    }
+}
+.home-body {
+    width: 100%;height: calc(100% - @menu_height - @footer_height);display: flex;
+    
+    /* .left-menu {
+        height: 100%;background-color: @menu_bg;box-sizing: border-box;border-right: 2px solid #ddd;
+        li {
+            height: 60px;line-height: 60px;padding: 0 20px;color: @text_color;
+            font-size: 15px;box-sizing: border-box;cursor: pointer;
+            white-space: nowrap;
+            &.active {
+                border-left: 2px solid @active;
+            }
+        }
+    } */
+    .home-body-left {
+        width: 280px;position: relative;
+        .nav-toggle {
+            position: absolute;right: -32px;top: 48%;padding: 0;
+            z-index: 10;
+            .ant-btn {
+                padding: 0;
+            }
+        }
+    }
+    .home-body-right {
+        flex: 1;position: relative;z-index: 1;background-color: #fff;overflow: hidden;display: flex;
+    }
+}
+.home-bottom {
+    height: @footer_height;
+    p {
+        text-align: center;background-color: @logo_bg;color: #fff;line-height: 30px;
+    }
+}

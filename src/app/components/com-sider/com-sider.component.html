@@ -1,0 +1,12 @@
+<div [@siderStatus]="visible ? 'active' : 'inactive'" class="sider-right">
+    <div class="sider-head">
+        <h2>{{Title}}</h2>
+    </div>
+    <div class="sider-body">
+        <ng-content></ng-content>
+    </div>
+    <div class="sider-footer">
+        <button type="button" nz-button nzType="" (click)="cancel()" >取消</button>
+        <button class="sider-ok-btn" type="button" nz-button nzType="" (click)="submit()" >确定</button>
+    </div>
+</div>

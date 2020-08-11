@@ -1,0 +1,15 @@
+<div *ngIf="forms" [formGroup]="forms" class="nz-com-parent flex" [class.one-line]="oneLine">
+    <!-- label -->
+    <span class="com-label com-select-label" *ngIf="label" [style.width]="labelWidth">{{label}}:</span>
+    <!-- 组件主体 -->
+    <nz-select *ngIf="mode=='tags'" (ngModelChange)="onChange($event)" [nzMode]="mode" [nzPlaceHolder]="placeholder" [formControlName]="field">
+        <nz-option *ngFor="let item of options" [nzValue]="item.value" [nzLabel]="item.label"></nz-option>
+    </nz-select>
+    <nz-select *ngIf="mode!='tags'" (ngModelChange)="onChange($event)" [nzMode]="mode" [nzPlaceHolder]="placeholder" [formControlName]="field">
+        <nz-option *ngFor="let item of options" [nzValue]="item.value" [nzLabel]="item.label"></nz-option>
+    </nz-select>
+    <!-- 输入错误提示 -->
+    <ng-container *ngIf="self.invalid && (self.dirty || self.touched)">
+        <p class="err_text" [class.errRight]="errRight" *ngIf="self.errors['required']">{{requiredText}}</p>
+    </ng-container>
+</div>

@@ -1,0 +1,41 @@
+
+<div class="login-wrap">
+    <form class="login-form" [formGroup]="userForm" (ngSubmit)="userLogin()">  
+        <h1>
+            <img class="login-logo" src="/assets/images/top-logo.png" alt="">
+            {{user}}
+        </h1>
+
+        <div class="log-form-input">
+            <!-- <span>用户名</span><input required type="text" formControlName="username" nz-input name="username"> -->
+            <nz-input-group nzPrefixIcon="user">
+                <input required type="text" formControlName="username" nz-input name="username" placeholder="用户名">
+            </nz-input-group>
+            <ng-container *ngIf="username.invalid && (username.dirty || username.touched)">
+                <p class="err_text" *ngIf="username.errors.required">该项必填!</p>
+                <p class="err_text" *ngIf="username.errors.minlength">请输入足够的长度!</p>
+                <p class="err_text" *ngIf="username.errors.maxlength">长度不超过12位!</p>
+                <p class="err_text" *ngIf="username.errors.match">请输入汉字、拼音、数字、下划线!</p>
+            </ng-container>
+        </div>
+
+        <div class="log-form-input">
+            <!-- <span>密码</span><input required type="password" formControlName="password" nz-input name="password"> -->
+            <nz-input-group nzPrefixIcon="lock">
+                <input required type="password" formControlName="password" nz-input name="password" placeholder="密码">
+            </nz-input-group>
+            <ng-container *ngIf="password.invalid && (password.dirty || password.touched)">
+                <p class="err_text" *ngIf="password.errors.required">该项必填!</p>
+                <p class="err_text" *ngIf="password.errors.minlength">请输入足够的长度!</p>
+                <p class="err_text" *ngIf="password.errors.maxlength">长度不超过20位!</p>
+                <p class="err_text" *ngIf="password.errors.match">请输入拼音、数字!</p>
+            </ng-container>
+        </div>
+
+        <div class="button-box">
+            <button class="width100" type="submit" nz-button nzType="primary">登录</button>
+            <!-- <button type="button" (click)="userRegister()" testdic="" nz-button nzType="">注册</button> -->
+        </div>
+    </form>
+</div>
+

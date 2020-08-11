@@ -1,0 +1,16 @@
+<div *ngIf="forms" [formGroup]="forms" class="nz-com-parent flex" [class.one-line]="oneLine">
+    <!-- label -->
+    <span class="com-label com-select-label" [class.invisible]="!label" [style.width]="labelWidth">{{label}}:</span>
+    <!-- 组件主体 -->
+    <input [readonly]="readonly" *ngIf="type!='textarea'" [type]="type" nz-input [placeholder]="placeholder" [formControlName]="field">
+    <textarea [readonly]="readonly" *ngIf="type=='textarea'" nz-input [placeholder]="placeholder" [formControlName]="field"></textarea>
+    <!-- 输入错误提示 -->
+    <ng-container *ngIf="self.invalid && (self.dirty || self.touched)">
+        <ng-container>
+            <p class="err_text" [class.errRight]="errRight" *ngIf="self.errors['required'];else otherErr">该项必填!</p>
+            <ng-template #otherErr>
+                <p class="err_text" [class.errRight]="errRight" *ngIf="self.errors['match']">{{self.errors['match'].text}}</p>
+            </ng-template>
+        </ng-container>
+    </ng-container>
+</div>

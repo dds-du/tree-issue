@@ -1,0 +1,75 @@
+<div class="home-top">
+	<!-- <h2 class="welcom-text"> <i class="top-logo"></i> {{welcome}}</h2> -->
+	<div [@navStatus]="navStatus ? 'open' : 'shrink'" class="home-logo">
+		<img src="/assets/images/top-logo.png" alt="" class="main-logo">
+		<span>{{welcome}}</span>
+	</div>
+	<div class="home-top-left">
+		<ul class="top-menu" nzMode="horizontal">
+			<li 
+				[routerLink]="'/home'+item.path" 
+				*ngFor="let item of navList;let i = index;" 
+				routerLinkActive="active"
+				(click)="topMenuClick(i)"
+			>
+				<i class="top-left-icon" nz-icon [nzType]="item.icon ? item.icon : 'mail'"></i>
+				{{item.title}}
+				<!-- <i class="top-right-icon" nz-icon nzType="down"></i> -->
+			</li>
+			
+		</ul>
+	</div>
+	<div class="home-top-right">
+		<span class="user-info"><i nz-icon nzType="user"></i> {{userInfo.username || '用户'}}</span>
+		<button 
+			nz-popconfirm
+			nzPopconfirmTitle="确定要退出系统?" 
+			nz-button 
+			type="button" 
+			nzType="link"
+			(nzOnConfirm)="logOut()"
+			(nzOnCancel)="cancel()"
+			nzPopconfirmPlacement="bottomLeft"
+		><i nz-icon nzType="logout"></i> 退出登录</button>
+	</div>
+</div>
+<div class="home-body">
+	<div [class.shrink]="!navStatus" [@navStatus]="navStatus ? 'open' : 'shrink'" class="home-body-left main-left-nav">
+		<!-- 左侧菜单 -->
+		<ul nz-menu nzMode="inline" class="second-menu">
+			<ng-container *ngFor="let item of leftmenuList">
+				<li *ngIf="!item.children?.length" nz-menu-item [routerLink]="['/home' + item.path]" routerLinkActive="active">
+					<i nz-icon [nzType]="item.icon ? item.icon : 'mail'"></i>
+					{{item.title}}
+				</li>
+				<li
+					*ngIf="item.children?.length"
+					nz-submenu
+					[nzTitle]="item.title"
+					[nzOpen]="activeSubMenu == 4"
+					[nzIcon]="item.icon ? item.icon : 'mail'"
+				>
+					<ul class="third-menu">
+						<li *ngFor="let child of item.children" nz-menu-item [routerLink]="['/home' + child.path]" routerLinkActive="active">
+							<!-- <i nz-icon [nzType]="child.icon ? child.icon : 'mail'"></i> -->
+							{{child.title}}
+						</li>
+					</ul>
+				</li>
+			</ng-container>
+		</ul>
+		<!-- 菜单收缩展开按钮 -->
+		<div class="nav-toggle" (click)="toggleNavStatus()">
+			<button type="button" nz-button>
+				<i *ngIf="navStatus" nz-icon nzType="double-left"></i>
+				<i *ngIf="!navStatus" nz-icon nzType="double-right"></i>
+			</button>
+		</div>
+	</div>
+	<div class="home-body-right">
+		<router-outlet></router-outlet>
+	</div>
+</div>
+<div class="home-bottom">
+	<p>@copyright 底部信息</p>
+</div>

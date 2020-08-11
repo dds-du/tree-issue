@@ -1,0 +1,173 @@
+@bg-color:#F0F2F5;
+@font-color-blue:#1890FF;
+@font-size-h1:24px;
+@font-size-h2:22px;
+@font-size-h4:16px;
+@font-h2-line:28px;
+@font-h-weight: bold !important;
+@font-btn-size:14px;
+@table-line-height:54px;
+@btn-height:30px;
+@padding-top-gap:24px;
+@padding-left-gap:24px;
+@padding-right-gap:24px;
+@padding-bottom-gap:24px;
+@margin-top-gap:24px;
+@margin-left-gap:24px;
+@margin-right-gap:24px;
+@margin-bottom-gap:24px;
+@font-size-large:16px !important;
+@font-size-default:14px !important;
+@font-size-small:12px !important;
+
+@text_color: #2c404c;
+@text_color2: #889aa5;
+@menu_bg: #e2e8ed;
+@logo_bg: #012939;
+@shadow: rgba(0, 0, 0, .2);
+@active: #09819C;
+
+.mask-title{
+  border-left: 3px solid #1890FF;
+  width: 100%;
+  text-indent: 10px;
+  overflow: hidden;
+}
+.mask-title p{
+  width: 80px;
+  float: left;
+}
+
+.mask-title{
+  .line-p{
+    width: -moz-calc(100% - 80px);
+    width: -webkit-calc(100% - 80px);
+    width: calc(100% - 80px);
+    height: 1px;
+    background: #ccc;
+    float: left;
+    margin-top: 10px;
+  }
+}
+.input-row-wrap{
+  padding-top: 20px;
+}
+.no-first{
+  margin-top: 20px;
+}
+.row-gap{
+  padding-bottom: 20px;
+}
+.width100{
+  width: 100%;
+}
+.width77{
+  width: 77%;
+  margin-left: 5px;
+}
+.width70{
+  width: 70%;
+  margin-left: 5px;
+}
+.width64{
+  width: 64%;
+  margin-left: 5px;
+}
+.width60{
+  width: 60%;
+  margin-left: 5px;
+}
+.ellipsis{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.float-left{
+  float: left;
+}
+
+.float-right{
+  float: right;
+}
+
+ng-component {
+	width: 100%;
+}
+/* 表单列表页面通用样式 start */
+//工具栏按钮
+.toolbar-btn {
+	font-size: @font-size-default;color: @text_color;
+}
+.sys-flex-container {
+	display: flex;height: 100%;overflow-x: hidden;overflow-y: auto;
+}
+.sys-main-tree {
+	width: 240px;border-right: 2px solid #ddd;box-sizing: border-box;padding: 20px;
+}
+//通用包裹容器
+.sys-container {
+	height: 100%;overflow-y: auto;overflow-x: hidden;box-sizing: border-box;padding: 0 15px;
+	flex: 1;
+}
+//顶部标题
+.sys-title {
+	height: 60px;line-height: 60px;font-size: @font-size-h2;color: @text_color;
+}
+//工具栏
+.sys-toolbar-list {
+	padding-bottom: 10px;
+}
+//顶部搜索栏
+.sys-search {
+	.search-btn-wrap {
+		margin-left: 20px;
+	}
+}
+//表单外层
+.nz-com-parent {
+	.ant-select { width: 100%; }
+	>span {
+		font-size: @font-size-small;padding-right: 10px;color: @text_color;line-height: 32px;
+	}
+	&.one-line {
+		display: flex;
+	}
+}
+
+//表格父级
+.table-parent {
+	padding-top: 16px;
+}
+@sider_bc: #b6c3cc;
+//表单错误
+.ng-invalid.ng-touched {
+	border-color: red;
+}
+nz-select.ng-invalid.ng-touched {
+	.ant-select-selector {
+		border-color: red;
+	}
+}
+//右边侧滑栏
+.sider-right {
+	display: flex;flex-direction: column;position: absolute;right: -100%;top: 100px;
+	width: 400px;height: calc(100% - 160px);background-color: #ebeff2;border-radius: 6px;
+	border: 1px solid @sider_bc;box-shadow: 0 0 2px rgba(0, 0, 0, .2);
+	.sider-head {
+		height: 60px;line-height: 60px;padding: 0 20px;
+	}
+	.sider-body {
+		flex: 1;padding: 0 20px;
+		.nz-com-parent {
+			margin-bottom: 20px;
+		}
+	}
+	.sider-footer {
+		height: 50px;text-align: right;padding: 0 20px;border-top: 1px solid @sider_bc;padding-top: 10px;
+	}
+	.sider-ok-btn {
+		background-color: @text_color;color: #fff;
+	}
+}
+/* 表单列表页面通用样式 end */

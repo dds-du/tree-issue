@@ -1,0 +1,62 @@
+{
+	"extends": "tslint:recommended",
+	"rules": {
+		"typedef-whitespace": true, //类型声明不能使用空格
+		"no-var-keyword": true,   //不能用var声明
+		"await-promise": true,  //await后面是否为Promise函数
+		"max-line-length": [
+			true,
+			200
+		],
+		"indent": [
+			true, 
+			"tabs", 
+			4
+		],
+		"trailing-comma": [ true, { //对尾随逗号的校验
+			"multiline": {
+				"objects": "ignore",
+				"arrays": "never",
+				"functions": "never",
+				"typeLiterals": "ignore"
+			},
+			"esSpecCompliant": true //是否允许尾随逗号出现在剩余变量中
+		}],
+		"no-console": [
+			true,
+			"debug",
+			"info",
+			"time",
+			"timeEnd",
+			"trace"
+		],
+		"whitespace": [
+			true,
+			"check-branch",
+			"check-decl",
+			"check-operator",
+			"check-separator",
+			"check-type"
+		],
+		"no-empty": false,
+		"no-non-null-assertion": true,
+		"no-redundant-jsdoc": true,
+		"no-switch-case-fall-through": true,
+		"no-var-requires": false,
+		"semicolon": {
+			"options": [
+				"always"
+			]
+		},
+		"comment-format": false,
+		"ban-types": false,
+		"max-classes-per-file": false,
+		"array-type": false,
+		"no-trailing-whitespace": false,
+		"object-literal-shorthand": false,
+		"triple-equals": false
+	},
+	"rulesDirectory": [
+		"codelyzer"
+	]
+}

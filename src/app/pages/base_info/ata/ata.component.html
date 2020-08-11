@@ -1,0 +1,110 @@
+<div class="sys-flex-container">
+    <div class="sys-main-tree">
+        <com-tree
+            [maxHeight]="1000"
+        ></com-tree>
+    </div>
+
+    <div class="sys-container">
+        <!-- 标题 -->
+        <h2 class="sys-title">测试2</h2>
+        <!-- toolbar -->
+        <div class="sys-toolbar-list">
+            <button nzSize="small" nz-button nzType="link" type="button" class="toolbar-btn" (click)="newAirType()">
+                <i  class="toolbar-icon" nz-icon nzType="plus"></i>
+                新建
+            </button>
+            <button nzSize="small" nz-button nzType="link" type="button" class="toolbar-btn" (click)="deleteTypes()">
+                <i class="toolbar-icon" nz-icon nzType="delete"></i>
+                批量删除
+            </button>
+            <button nzSize="small" nz-button nzType="link" type="button" class="toolbar-btn">
+                <i class="toolbar-icon" nz-icon nzType="export"></i>
+                导入
+            </button>
+            <button nzSize="small" nz-button nzType="link" type="button" class="toolbar-btn">
+                <i class="toolbar-icon" nz-icon nzType="import"></i>
+                导出
+            </button>
+        </div>
+        <!-- 头部搜索表单 -->
+        <form nz-row nzGutter=16 class="sys-search" [formGroup]="forms">
+            <div nz-col nzSpan=6 > 
+                <com-select
+                    [oneLine]="true"
+                    mode="tags"
+                    [forms]="forms"
+                    label="铁路型号"
+                    [labelWidth]="labelWidth"
+                    [options]="options"
+                    field="airType"
+                ></com-select>
+            </div>
+            <div nz-col nzSpan=6 >
+                <com-select
+                    [oneLine]="true"
+                    [forms]="forms"
+                    label="铁路选型"
+                    [labelWidth]="labelWidth"
+                    [options]="options"
+                    field="airClass"
+                ></com-select>
+            </div>
+            <div nz-col class="search-btn-wrap">
+                <button type="button" nz-button nzType="primary" (click)="onSearch()" >搜索</button>
+                <button type="button" nz-button (click)="onReset()" >重置</button>
+            </div>
+        </form>
+        <!-- 列表 -->
+        <div class="table-parent">
+            <!-- <com-table
+                getUrl="/airtypelist"
+                [getOnServer]="false"
+                [headers]="tableHeader"
+                (valueChange)="tableChange($event)"
+                [getParams]="searParam"
+                (trChange)="onTrChange($event)"
+            ></com-table> -->
+        </div>
+    </div>
+</div>
+<com-sider
+    [Title]="siderTitle"
+    [(visible)] = "siderStatus"
+>
+    <form [formGroup]="siderForms">
+        <com-select
+            [forms]="siderForms"
+            label="铁路型号"
+            [labelWidth]="labelWidth"
+            [options]="options"
+            field="airType"
+            [required]="true"
+        ></com-select>
+        <com-select
+            [forms]="siderForms"
+            label="铁路选型"
+            [labelWidth]="labelWidth"
+            [options]="options"
+            field="airClass"
+        ></com-select>
+        <com-select
+            [forms]="siderForms"
+            label="制造商"
+            [labelWidth]="labelWidth"
+            [options]="options"
+            field="product"
+            [required]="true"
+        ></com-select>
+        <com-input
+            [forms]="siderForms"
+            label="座位数"
+            [labelWidth]="labelWidth"
+            field="sets"
+            [verifys]="requiredVerify"
+        ></com-input>
+    </form>
+</com-sider>
+
+
+    

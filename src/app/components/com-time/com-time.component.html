@@ -1,0 +1,17 @@
+<div *ngIf="forms" [formGroup]="forms" class="nz-com-parent flex" [class.one-line]="oneLine">
+    <!-- label -->
+    <span class="com-label com-select-label" *ngIf="label" [style.width]="labelWidth">{{label}} <span *ngIf="showDot">:</span></span>
+    <!-- 组件主体 -->
+    <nz-date-picker [nzDisabledDate]="disabledDate" *ngIf="type=='date'" [nzShowTime]="showTime" [formControlName]="field" (ngModelChange)="onChange($event)"
+    ></nz-date-picker>
+
+    <nz-range-picker *ngIf="type=='range'" [formControlName]="field" [ngModel]="timeValue" (ngModelChange)="onChange($event)"
+    ></nz-range-picker>
+
+    <nz-time-picker *ngIf="type=='time'" [formControlName]="field" [ngModel]="timeValue" (ngModelChange)="onChange($event)"
+    ></nz-time-picker>
+    <!-- 输入错误提示 -->
+    <ng-container *ngIf="self.invalid && (self.dirty || self.touched)">
+        <p class="err_text" [class.errRight]="errRight" *ngIf="self.errors['required']">{{requiredText}}</p>
+    </ng-container>
+</div>

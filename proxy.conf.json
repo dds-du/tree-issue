@@ -1,0 +1,12 @@
+{
+  "/api": {
+    "target": "http://localhost:3000/api",
+    "temp": "http://192.168.5.46:8087",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}
